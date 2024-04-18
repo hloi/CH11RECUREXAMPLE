@@ -33,51 +33,18 @@ string sumString(string str) {
 }
 
 vector<string> accumString(vector<string> str, int size) {
-    if (str.length() == 0) {
+    if (str.empty()) {
         return {};
     } else {
-        if (size == 1)
-        vector<string> v = accumString(str.substr(1), size);
-        v.push_back(str);
-        return v;
-    }
-    accumString(str.substr(1), size);
-
-}
-
-// accum string and return a vector of strings
-vector<string> accumString(vector<string> str, int size) {
-    if (str.length() == 0) {
-        return {};
-    } else {
-        if (size == 1)
-        vector<string> v = accumString(str.substr(1), size);
-        v.push_back(str);
-        return v;
-    }
-    accumString(str.substr(1), size);
-
-}
-
-vector<string> accumString(vector<string> str, int size) {
-    vector<string> v;
-    string s;
-    if (str.size() == 0) {
-        return v;
-    }
-    else {
+        vector<string> v;
         if (str[0].size() == size) {
-            v.push_back(str[0]); // accum string
-        } else {
-            s = str[0];
-            str.erase(str.begin());
-            v.push_back(s)
-            return accumString(str, size);
+            v.push_back(str[0]);
         }
-   return v;
+        vector<string> rest = accumString(vector<string>(str.begin() + 1, str.end()), size);
+        v.insert(v.end(), rest.begin(), rest.end());
+        return v;
+    }
 }
-#include <iostream>
-using namespace std;
 
 int search(int arr[], int low, int high, int key) {
     if (low > high) {
@@ -122,7 +89,10 @@ cout << "Linear search: " << search(arr, 0, 9, key) << endl;
 
 vector<string> v = {"am", "bcc", "cd", "d", "echo", "f", "g", "h", "i", "j"};
 
-
+vector<string> v1 = accumString(v, 2);
+for (string s : v1) {
+    cout << s << endl;
+}
     return 0;
 }
 //int main() {
