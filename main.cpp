@@ -40,7 +40,9 @@ vector<string> accumString(vector<string> str, int size) {
         if (str[0].size() == size) {
             v.push_back(str[0]);
         }
-        vector<string> rest = accumString(vector<string>(str.begin() + 1, str.end()), size);
+
+        str.erase(str.begin());
+        vector<string> rest = accumString(str, size);
         v.insert(v.end(), rest.begin(), rest.end());
         return v;
     }
@@ -83,17 +85,16 @@ int binary_search(int arr[], int low, int high, int key) {
 
 int main() {
     // create a sorted array with 10 elements
-int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-int key = 5;
-cout << "Linear search: " << search(arr, 0, 9, key) << endl;
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int key = 5;
+    cout << "Linear search: " << search(arr, 0, 9, key) << endl;
 
-vector<string> v = {"am", "bcc", "cd", "d", "echo", "f", "g", "h", "i", "j"};
+    vector<string> v = {"am", "bcc", "cd", "d", "echo", "f", "g", "h", "i", "j"};
 
-vector<string> v1 = accumString(v, 2);
-for (string s : v1) {
-    cout << s << endl;
-}
-    return 0;
+    vector<string> v1 = accumString(v, 2);
+    for (string s: v1) {
+        cout << s << endl;
+    }
 }
 //int main() {
 //    // cout << countDown(5) << endl;
