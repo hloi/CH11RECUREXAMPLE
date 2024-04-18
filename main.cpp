@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -31,6 +32,50 @@ string sumString(string str) {
     }
 }
 
+vector<string> accumString(vector<string> str, int size) {
+    if (str.length() == 0) {
+        return {};
+    } else {
+        if (size == 1)
+        vector<string> v = accumString(str.substr(1), size);
+        v.push_back(str);
+        return v;
+    }
+    accumString(str.substr(1), size);
+
+}
+
+// accum string and return a vector of strings
+vector<string> accumString(vector<string> str, int size) {
+    if (str.length() == 0) {
+        return {};
+    } else {
+        if (size == 1)
+        vector<string> v = accumString(str.substr(1), size);
+        v.push_back(str);
+        return v;
+    }
+    accumString(str.substr(1), size);
+
+}
+
+vector<string> accumString(vector<string> str, int size) {
+    vector<string> v;
+    string s;
+    if (str.size() == 0) {
+        return v;
+    }
+    else {
+        if (str[0].size() == size) {
+            v.push_back(str[0]); // accum string
+        } else {
+            s = str[0];
+            str.erase(str.begin());
+            v.push_back(s)
+            return accumString(str, size);
+        }
+   return v;
+}
 #include <iostream>
 using namespace std;
 
@@ -74,6 +119,9 @@ int main() {
 int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 int key = 5;
 cout << "Linear search: " << search(arr, 0, 9, key) << endl;
+
+vector<string> v = {"am", "bcc", "cd", "d", "echo", "f", "g", "h", "i", "j"};
+
 
     return 0;
 }
